@@ -1,77 +1,93 @@
-const array = [
+let array = [
     {
         firstname1: 'Géza',
         firstname2: 'Ferenc',
-        lastname: 'Kocsis'
+        lastname: 'Kocsis',
+        married: true,
+        pet: 'kutya'
     },
     {
         firstname1: 'Mária',
         firstname2: 'Júlia',
-        lastname: 'Horváth'
+        lastname: 'Horváth',
+        married: false,
+        pet: 'macska'
     },
     {
         firstname1: 'Ferenc',
-        lastname: 'Balogh'
+        lastname: 'Balogh',
+        married: false,
+        pet: 'teknős'
     },
     {
         firstname1: 'Gábor',
         firstname2: 'Attila',
-        lastname: 'Horváth'
+        lastname: 'Horváth',
+        married: true,
+        pet: 'macska'
     },
 ]
 
-const table = document.createElement("table");
-const thead = document.createElement("thead");
-const tbody = document.createElement("tbody");
-const tr = document.createElement("tr");
+const table = document.createElement('table');
+const tableHeader = document.createElement('thead');
+const tableBody = document.createElement('tbody');
+const tableHeaderRow = document.createElement('tr');
+const tableHeaderFhirstName = document.createElement('th');
+const tableHeaderLastName = document.createElement('th');
+const tableHeaderMarried = document.createElement('th');
+const tableHeaderPet = document.createElement('th');
 
-const td1 = document.createElement("td");
-td1.innerHTML = "firstname";
-td1.colSpan = 2;
-tr.appendChild(td1);
-const td2 = document.createElement("td");
-td2.innerHTML = "secondname";
-tr.appendChild(td2)
+table.appendChild(tableHeader);
+table.appendChild(tableBody);
+tableHeader.appendChild(tableHeaderRow);
+tableHeaderRow.appendChild(tableHeaderLastName);
+tableHeaderRow.appendChild(tableHeaderFhirstName);
+tableHeaderRow.appendChild(tableHeaderMarried);
+tableHeaderRow.appendChild(tableHeaderPet);
 
+tableHeaderFhirstName.innerHTML = 'Keresztnév';
+tableHeaderLastName.innerHTML = 'Vezetékév';
+tableHeaderMarried.innerHTML = 'Házas-e?';
+tableHeaderPet.innerHTML = 'Háziállat';
+tableHeaderFhirstName.colSpan = 2;
 
+for(let line of array){
+    const row = document.createElement('tr');
+    const ln = document.createElement('td');
+    const fn1 = document.createElement('td');
+    const married = document.createElement('td');
+    const pet = document.createElement('td');
 
-const tr1 = document.createElement("tr");
-for(let i of array){
-    const td1 = document.createElement("td");
-    const td2 = document.createElement("td");
-    const td3 = document.createElement("td");
-    const tr = document.createElement("tr");
-
-    td1.innerHTML = i.firstname1;
-    tr.appendChild(td1);
-    if (i.firstname2 === undefined){
-        td1.colSpan = 2;
-    } else {
-        td2.innerHTML = i.firstname2;
-        tr.appendChild(td2);
+    ln.innerHTML = line.lastname;
+    fn1.innerHTML = line.firstname1;
+    married.innerHTML = line.married?"igen":"nem";
+    pet.innerHTML = line.pet;
+    
+    tableBody.appendChild(row);
+    row.appendChild(ln);    
+    row.appendChild(fn1);
+    
+    
+    if(line.firstname2){
+        const fn2 = document.createElement('td');
+        fn2.innerHTML = line.firstname2;
+        row.appendChild(fn2);
     }
-
-    td3.innerHTML = i.lastname;
+    else {
+        fn1.colSpan = 2;
+    }
     
-    tr.appendChild(td3);
-    tr.addEventListener("click",hehe);
-    tbody.appendChild(tr)
+    row.appendChild(married);
+    row.appendChild(pet);
 
-
-}
-
-//WHAT??
-function hehe(e){
-    if (e.currentTarget.querySelector(".hehe") == undefined){
-    e.currentTarget.classList.add('hehe');
-}else
-{
-    e.currentTarget.classList.remove('hehe');
-}
     
-}
+    row.addEventListener('click', function (e) {
+        let selected = tableBody.querySelector('.selected');
+        if(selected)
+            selected.classList.remove('selected');
 
-thead.appendChild(tr);
-table.appendChild(thead);
-table.appendChild(tbody);
+        e.currentTarget.classList.add('selected');
+    });
+};
+
 document.body.appendChild(table);
