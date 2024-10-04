@@ -60,7 +60,7 @@ for(let line of array){
 
     ln.innerHTML = line.lastname;
     fn1.innerHTML = line.firstname1;
-    married.innerHTML = line.married?"igen":"nem";
+    married.innerHTML = line.married? "igen":"nem";
     pet.innerHTML = line.pet;
     
     tableBody.appendChild(row);
@@ -89,5 +89,23 @@ for(let line of array){
         e.currentTarget.classList.add('selected');
     });
 };
-
 document.body.appendChild(table);
+
+const form = document.getElementById("form");
+form.addEventListener("submit",function (e) {
+    e.preventDefault()
+    const alastname = document.getElementById("lastname").value;
+    const afirstname1 = document.getElementById("firstname1").value;
+    const afirstname2 = document.getElementById("firstname2").value;
+    const amarried = document.getElementById("married").checked;
+    const apet = document.getElementById("pet").value;
+
+    //qué
+    array.push{
+        firstname1: afirstname1,
+        firstname2: afirstname2,
+        lastname: alastname,
+        married: amarried,
+        pet: apet
+    }
+});
