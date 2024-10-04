@@ -13,3 +13,6 @@ tbody tr:nth-child(2n){
 tbody tr:hover{
     background-color: red;
 }
+.hehe{
+    font-weight: bold;
+}

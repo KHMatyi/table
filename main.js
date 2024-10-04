@@ -54,12 +54,22 @@ for(let i of array){
     td3.innerHTML = i.lastname;
     
     tr.appendChild(td3);
-
+    tr.addEventListener("click",hehe);
     tbody.appendChild(tr)
 
 
 }
 
+//WHAT??
+function hehe(e){
+    if (e.currentTarget.querySelector(".hehe") == undefined){
+    e.currentTarget.classList.add('hehe');
+}else
+{
+    e.currentTarget.classList.remove('hehe');
+}
+    
+}
 
 thead.appendChild(tr);
 table.appendChild(thead);
