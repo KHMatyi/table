@@ -37,29 +37,24 @@ function ReLoadTable(){
     const tableHeader = document.createElement('thead');
     const tableBody = document.createElement('tbody');
     const tableHeaderRow = document.createElement('tr');
-    const tableHeaderFhirstName = document.createElement('th');
-    const tableHeaderLastName = document.createElement('th');
-    const tableHeaderMarried = document.createElement('th');
-    const tableHeaderPet = document.createElement('th');
+
+
     
+    table.id = 'table';
+    
+    createTableCell("th",'Keresztnév',tableHeaderRow)
+    createTableCell("th",'Vezetékév',tableHeaderRow)
+    createTableCell("th",'Házas-e?',tableHeaderRow)
+    createTableCell("th",'Keresztnév',tableHeaderRow)
     table.appendChild(tableHeader);
     table.appendChild(tableBody);
     tableHeader.appendChild(tableHeaderRow);
-    tableHeaderRow.appendChild(tableHeaderLastName);
-    tableHeaderRow.appendChild(tableHeaderFhirstName);
-    tableHeaderRow.appendChild(tableHeaderMarried);
-    tableHeaderRow.appendChild(tableHeaderPet);
-    
-    table.id = 'table';
-    tableHeaderFhirstName.innerHTML = 'Keresztnév';
-    tableHeaderLastName.innerHTML = 'Vezetékév';
-    tableHeaderMarried.innerHTML = 'Házas-e?';
-    tableHeaderPet.innerHTML = 'Háziállat';
     tableHeaderFhirstName.colSpan = 2;
-    
+    //skibidi
     
     for(let line of array){
         const row = document.createElement('tr');
+        tableBody.appendChild(row);
         const ln = document.createElement('td');
         const fn1 = document.createElement('td');
         const married = document.createElement('td');
@@ -70,7 +65,6 @@ function ReLoadTable(){
         married.innerHTML = line.married? 'Igen':'Nem';
         pet.innerHTML = line.pet;
         
-        tableBody.appendChild(row);
         row.appendChild(ln);    
         row.appendChild(fn1);
         
@@ -168,4 +162,16 @@ function ValidateFields(fields){
     }
     
         return isGood;
+}
+/**
+ * 
+ * @param {'td'|'th'} a 
+ * @param {string} b 
+ * @param {HTMLTableRowElement} c 
+ * @returns {HTMLTableCellElement}
+ */
+function createTableCell(a,b,c){
+    const element = document.createElement(a);
+    element.innerHTML = b;
+    c.appendChild(element);
 }
