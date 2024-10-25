@@ -50,7 +50,6 @@ function ReLoadTable(){
     table.appendChild(tableBody);
     tableHeader.appendChild(tableHeaderRow);
     tableHeaderFhirstName.colSpan = 2;
-    //skibidi
     
     for(let line of array){
         const row = document.createElement('tr');
@@ -88,6 +87,7 @@ function ReLoadTable(){
                 selected.classList.remove('selected');
     
             e.currentTarget.classList.add('selected');
+            form.reset()
         });
     };
 
@@ -160,11 +160,9 @@ function ValidateFields(fields){
         else
             errorField.innerHTML = '';
     }
-    
-        return isGood;
+    return isGood;
 }
 /**
- * 
  * @param {'td'|'th'} a 
  * @param {string} b 
  * @param {HTMLTableRowElement} c 
