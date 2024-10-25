@@ -33,7 +33,8 @@ function ReLoadTable(){
     if(document.getElementById('table'))
         (document.getElementById('table')).remove();
 
-    const table = document.createElement('table');
+    
+    const table = createHTMLElement('table','table',document.body);
     const tableHeader = document.createElement('thead');
     const tableBody = document.createElement('tbody');
     const tableHeaderRow = document.createElement('tr');
@@ -49,7 +50,6 @@ function ReLoadTable(){
     table.appendChild(tableHeader);
     table.appendChild(tableBody);
     tableHeader.appendChild(tableHeaderRow);
-    tableHeaderFhirstName.colSpan = 2;
     
     for(let line of array){
         const row = document.createElement('tr');
@@ -90,9 +90,6 @@ function ReLoadTable(){
             form.reset()
         });
     };
-
-
-    document.body.appendChild(table);
 }
 
 ReLoadTable();
@@ -162,14 +159,6 @@ function ValidateFields(fields){
     }
     return isGood;
 }
-/**
- * @param {'td'|'th'} a 
- * @param {string} b 
- * @param {HTMLTableRowElement} c 
- * @returns {HTMLTableCellElement}
- */
-function createTableCell(a,b,c){
-    const element = document.createElement(a);
-    element.innerHTML = b;
-    c.appendChild(element);
-}
+
+
+ 
